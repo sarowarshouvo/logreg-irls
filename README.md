@@ -1,37 +1,39 @@
 # logreg-irls
-This project presents the implementation, analysis, and evaluation of logistic regression using the Iteratively Reweighted Least Squares (IRLS) algorithm to investigate how regularization enhances convergence, numerical stability, and generalization across varying data conditions. The study begins by generating a balanced, linearly separable synthetic dataset consisting of two Gaussian clusters representing binary classes (
-𝑦
-∈
-{
-0
-,
-1
-}
-y∈{0,1}). This baseline configuration provides an ideal foundation for validating IRLS behavior under perfect separability before introducing data irregularities such as noise, outliers, and imbalance.
+# Implementation and Analysis of Logistic Regression using the IRLS Algorithm
 
-The IRLS algorithm, derived from the maximum-likelihood estimation framework for logistic regression, iteratively updates model parameters through a weighted least-squares approximation of the log-likelihood. Both unregularized (
-𝜆
-=
-0
-λ=0) and ridge-regularized (
-𝜆
->
-0
-λ>0) versions were implemented in R, ensuring numerical stability through probability clipping, Hessian conditioning, and careful handling of the intercept term. Regularization was incorporated via an ℓ₂ penalty to constrain coefficient magnitudes, preventing divergence and improving interpretability.
+This project implements and analyzes **logistic regression** using the **Iteratively Reweighted Least Squares (IRLS)** algorithm to explore how **ℓ₂ regularization (ridge penalty)** improves convergence, numerical stability, and generalization across different data conditions.
 
-The project further examines IRLS performance under increasingly complex conditions. When outliers were introduced to break linear separability, the unregularized model produced unstable, inflated coefficients, while the ridge-regularized model maintained smooth decision boundaries and bounded norms. Additional experiments varied sample size, class balance, and feature dimension (m) to evaluate how regularization scales with data complexity. Across all settings, ridge IRLS consistently converged within 8–12 iterations, with small, stable coefficient norms (
-∥
-𝛽
-∥
-2
-≈
-1.7
-–
-2.6
-∥β∥
-2
-	​
+## 🔍 Overview
+The study begins with a **balanced, linearly separable synthetic dataset** generated from two Gaussian clusters representing binary classes (`y ∈ {0,1}`). This setup establishes a clean baseline to validate IRLS behavior before introducing irregularities such as **noise, outliers, and imbalance**.
 
-≈1.7–2.6), while unregularized models frequently diverged or reached iteration limits.
+The **IRLS algorithm**, derived from maximum-likelihood estimation, iteratively updates model parameters through weighted least-squares approximations of the log-likelihood. Both **unregularized (λ = 0)** and **ridge-regularized (λ > 0)** versions were implemented in R, with attention to:
+- Probability clipping for numerical stability  
+- Proper intercept handling  
+- Hessian conditioning and convergence monitoring  
 
-An 80–20 train–test evaluation confirmed that ridge regularization preserved predictive accuracy (88.9–100%) while preventing coefficient explosion and ensuring numerical conditioning. Even in high-dimensional and imbalanced datasets, the ridge model achieved comparable or superior performance with improved stability. Overall, this project demonstrates that ℓ₂ regularization is crucial for achieving robust logistic regression models. It strengthens convergence, reduces sensitivity to outliers, and enhances generalization across diverse datasets, confirming its essential role in modern predictive analytics.
+## ⚙️ Experiments
+The project examines model performance across:
+- Clean vs. noisy data (with injected outliers)  
+- Small vs. large datasets  
+- Balanced vs. imbalanced class distributions  
+- Higher feature dimensions (m > 2)  
+
+Ridge regularization consistently produced **bounded coefficients**, **smooth decision boundaries**, and **stable convergence** (8–12 iterations), while unregularized models often diverged or required the maximum iteration limit.
+
+## 📈 Results
+- **Train–test split:** 80–20  
+- **Accuracy:** 88.9% – 100%  
+- Ridge IRLS achieved comparable or superior accuracy with smaller parameter norms (‖β‖₂ ≈ 1.7–2.6).  
+- Regularization improved conditioning and generalization without sacrificing predictive performance.
+
+## 🧠 Conclusion
+**ℓ₂ regularization** is essential for robust logistic regression modeling. It stabilizes convergence, reduces sensitivity to outliers, and enhances interpretability across diverse datasets.
+
+---
+
+### 📂 Repository
+**Name:** `logreg-irls`  
+**Language:** R  
+**Notebook:** [Google Colab Link](https://colab.research.google.com/drive/1z71TY_BWET8otP08mqXSc8gPFheBi_vv)
+
+---
