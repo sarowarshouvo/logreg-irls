@@ -34,6 +34,4 @@ Ridge regularization consistently produced **bounded coefficients**, **smooth de
 ### 📂 Repository
 **Name:** `logreg-irls`  
 **Language:** R  
-**Notebook:** [Google Colab Link](https://colab.research.google.com/drive/1z71TY_BWET8otP08mqXSc8gPFheBi_vv)
-
 ---
